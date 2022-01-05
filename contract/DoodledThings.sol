@@ -1277,14 +1277,14 @@ pragma solidity ^0.8.9;
 contract DoodledThings is  Ownable, ERC721B {
 
     using Strings for uint256;
-    using ECDSA for bytes32;
+    using ECDSA for bytes32; // Validate
 
     uint256 public constant DT_PUBLIC = 2100;
     uint256 public constant DT_MAX = 2222;
     uint256 public constant DT_GIFT = 122;
     uint256 public constant DT_PRICE = 0.05 ether;
     uint256 public constant DT_PER_MINT = 5;
-    uint256 public giftedAmount;
+    uint256 public giftedAmount; // Validate
 
     // If you own 2 at post-launch snapshot you receive M1 Serum
     // If you own 5 at post-launch snapshot you receive M2 Serum
@@ -1305,7 +1305,9 @@ contract DoodledThings is  Ownable, ERC721B {
     
     constructor() ERC721B("DoodledThings", "DT") { }
     
-    // ** - CORE - ** //
+// ******************************************************************************************************************************
+// *************************************************** Minting Functionality ****************************************************
+// ******************************************************************************************************************************
 
     function buy(bytes32 hash, bytes memory signature, uint256 tokenQuantity) external payable {
         require(saleLive, "SALE_CLOSED");
@@ -1337,7 +1339,9 @@ contract DoodledThings is  Ownable, ERC721B {
         }
     } 
 
-    // ** - ADMIN - ** //
+// ******************************************************************************************************************************
+// ****************************************************** Administration ********************************************************
+// ******************************************************************************************************************************
 
     function withdraw() external onlyOwner {
         payable(_vaultAddress).transfer(address(this).balance);
@@ -1363,7 +1367,9 @@ contract DoodledThings is  Ownable, ERC721B {
         saleLive = !saleLive;
     }
 
-    // ** - SETTERS - ** //
+// ******************************************************************************************************************************
+// *********************************************************** Setters **********************************************************
+// ******************************************************************************************************************************
 
     function setSignerAddress(address addr) external onlyOwner {
         _signerAddress = addr;
@@ -1381,7 +1387,9 @@ contract DoodledThings is  Ownable, ERC721B {
         _tokenBaseURI = URI;
     }
 
-    // ** - MISC - ** //
+// ******************************************************************************************************************************
+// ************************************************************ Misc ************************************************************
+// ******************************************************************************************************************************
     
     function setProvenanceHash(string calldata hash) external onlyOwner {
         provenance = hash;
