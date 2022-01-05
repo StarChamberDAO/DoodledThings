@@ -1286,6 +1286,8 @@ contract DoodledThings is  Ownable, ERC721B {
     uint256 public constant DT_PER_MINT = 5;
     uint256 public giftedAmount; // Validate
 
+
+    // Random thooughts for a project using BAYC formular (Serums).
     // If you own 2 at post-launch snapshot you receive M1 Serum
     // If you own 5 at post-launch snapshot you receive M2 Serum
     // If you own 10 at post-launch snapshot you receive M3 Serum
